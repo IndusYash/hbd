@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Message</title>
+    
+    <!-- Google Fonts: Pacifico for celebration, Poppins for regular text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basic Setup */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            text-align: center;
+            transition: background-color 0.5s ease;
+        }
+
+        /* Page container styling */
+        .page {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        /* Make the first page visible on load */
+        #page1 {
+            display: flex;
+        }
+
+        h1, h2 {
+            color: #333;
+            font-weight: 700;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        /* Button Styling */
+        .button-container {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-yes {
+            background-color: #28a745; /* Green */
+        }
+
+        .btn-no {
+            background-color: #dc3545; /* Red */
+        }
+        
+        /* Intermediary Page Styling */
+        #page2 h2 {
+            color: #4a5568; /* A darker gray */
+        }
+        #page2 p {
+            font-style: italic;
+            color: #718096; /* A lighter gray */
+        }
+        .btn-next {
+            background-color: #4a5568;
+            margin-top: 1.5rem;
+        }
+
+        /* Celebration Page Styling */
+        #page4 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            color: #333;
+        }
+        
+        #page4 h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5rem;
+            color: #d9534f; /* A warm red */
+            margin-bottom: 1rem;
+        }
+
+        #page4 p {
+            font-size: 1.1rem;
+            color: #4F4F4F;
+        }
+        
+        .signature {
+            margin-top: 2rem;
+            font-style: italic;
+            color: #555;
+            align-self: flex-end;
+            margin-right: 5%;
+        }
+
+        .btn-back {
+             background-color: #5bc0de; /* Info Blue */
+             margin-top: 2rem;
+        }
+
+        /* Confetti Animation */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0.7;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="confetti-container"></div>
+
+    <!-- Page 1: The Initial Question -->
+    <div id="page1" class="page">
+        <h1 id="greeting">Good Day, Ma'am</h1>
+        <p>Did anyone from Team Third Year wish you personally on your birthday?</p>
+        <div class="button-container">
+            <!-- "Yes" now goes to the intermediary page (page2) -->
+            <button class="btn btn-yes" onclick="showPage('page2')">Yes</button>
+            <!-- "No" now goes directly to the false alarm (page3) -->
+            <button class="btn btn-no" onclick="showPage('page3')">No</button>
+        </div>
+    </div>
+
+    <!-- Page 2: The Intermediary "Yes" Response -->
+    <div id="page2" class="page">
+        <h2>A Truce Broken...</h2>
+        <p>As if an ancient truce were broken, I am forced to step up and confront this war head-on. With solemn silence, I now lead you to the next page.</p>
+        <!-- "Next Page" leads to the celebration (page4) -->
+        <button class="btn btn-next" onclick="showPage('page4')">Next Page</button>
+    </div>
+
+    <!-- Page 3: The "False Alarm" page (from clicking "No") -->
+    <div id="page3" class="page">
+        <h2>False Alarm!</h2>
+        <p>We apologize for taking your time. Have a great day ahead!</p>
+    </div>
+
+    <!-- Page 4: The Celebration page -->
+    <div id="page4" class="page">
+        <h1>Happy Birthday, Aastha Ma'am!</h1>
+        <p>
+            I'm very glad to be able to extend my birthday wishes to you. The opportunity to work under your guidance has been a truly rewarding experience. Your leadership, wisdom, and support are greatly appreciated and have been invaluable to my growth.
+        </p>
+        <p>
+            I wish you a day that is as bright and positive as your mentorship, and a year ahead filled with happiness, health, and success.
+        </p>
+        
+        <div class="signature">
+            <p>
+                Your faithful student,<br>
+                Yashvardhan Ojha
+            </p>
+        </div>
+        
+        <button class="btn btn-back" onclick="showPage('page1')">Back to Start</button>
+    </div>
+
+    <script>
+        // --- Page Navigation Logic ---
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.style.display = 'none';
+            });
+
+            // Show the requested page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.style.display = 'flex';
+            }
+            
+            // Trigger confetti only for the celebration page
+            if (pageId === 'page4') {
+                launchConfetti();
+            } else {
+                // Clear confetti if navigating away from the celebration
+                document.getElementById('confetti-container').innerHTML = '';
+            }
+        }
+
+        // --- Dynamic Greeting Logic ---
+        function setGreeting() {
+            const hour = new Date().getHours();
+            let greetingText = "Good Day, Ma'am";
+            if (hour < 12) {
+                greetingText = "Good Morning, Ma'am";
+            } else if (hour < 18) {
+                greetingText = "Good Afternoon, Ma'am";
+            } else {
+                greetingText = "Good Evening, Ma'am";
+            }
+            document.getElementById('greeting').textContent = greetingText;
+        }
+        
+        // --- Confetti Effect Logic ---
+        function launchConfetti() {
+            const container = document.getElementById('confetti-container');
+            container.innerHTML = ''; // Clear previous confetti
+            const colors = ['#ff4e4e', '#4e9aff', '#4eff7b', '#ffff4e', '#ff4eff', '#4effff'];
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -20 + 'px'; // Start above the screen
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.animationDuration = 3 + Math.random() * 2 + 's';
+                container.appendChild(confetti);
+            }
+        }
+
+        // --- Initialize on page load ---
+        window.onload = setGreeting;
+    </script>
+
+</body>
+</html>
